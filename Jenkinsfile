@@ -52,7 +52,6 @@ pipeline {
                 //}
             //}
         //}
-
         stage('Publish to Nexus') {
             steps {
                 withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
