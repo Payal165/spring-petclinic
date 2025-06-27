@@ -1,14 +1,14 @@
 pipeline {
-    agent { label 'jenkins-agent-01'}
+    agent any
 
     environment {
-        SONARQUBE_SERVER = 'SonarQube'       
-        MAVEN_HOME = tool 'Maven 3'              
-        NEXUS_REPO = 'maven-releases'            
-        NEXUS_URL = 'http://65.1.131.228:30001'  // Maven/Nexus UI
-        NEXUS_DOCKER_REPO = 'docker-hosted'      // Docker repo name in Nexus
-        NEXUS_DOCKER_REGISTRY = '65.1.131.228:5000'  // Docker registry port
-        NEXUS_CREDENTIALS_ID = 'nexus'    
+        SONARQUBE_SERVER = 'My_SonarQube'
+        MAVEN_HOME = tool 'maven 3.8.7'
+        NEXUS_REPO = 'maven-releases'
+        NEXUS_URL = 'http://13.201.55.135:30900'              // Maven/Nexus UI
+        NEXUS_DOCKER_REPO = 'docker-hosted'                  // Docker repo name
+        NEXUS_DOCKER_REGISTRY = '13.201.55.135:30002'         // Updated Docker registry port
+        NEXUS_CREDENTIALS_ID = 'nexus_cred'
     }
 
     options {
@@ -21,7 +21,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                git url: 'https://github.com/yeshcrik/spring-petclinic.git', branch: 'main'
+                git url: 'https://github.com/Payal165/spring-petclinic.git', branch: 'main'
             }
         }
 
@@ -52,12 +52,12 @@ pipeline {
         }
 
         //stage('Manual Approval') {
-          //  steps {
-            //    timeout(time: 10, unit: 'MINUTES') {
-         //           input message: "Approve deployment to Nexus?", ok: "Deploy"
-              //  }
+            //steps {
+                //timeout(time: 10, unit: 'MINUTES') {
+                    //input message: "Approve deployment to Nexus?", ok: "Deploy"
+                //}
             //}
-       // }
+        //}
 
         stage('Publish to Nexus') {
             steps {
@@ -75,7 +75,6 @@ pipeline {
             steps {
                 script {
                     def imageName = "petclinic"
-                    def dockerTag = "${imageName}:${BUILD_VERSION}"
 
                     // Download JAR from Nexus to build Docker image
                     withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIALS_ID}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
@@ -87,7 +86,7 @@ pipeline {
                         """
                     }
 
-                    // Build Docker image
+                    // Build Docker image using correct registry address
                     sh """
                         docker build -t ${NEXUS_DOCKER_REGISTRY}/${imageName}:${BUILD_VERSION} .
                     """
