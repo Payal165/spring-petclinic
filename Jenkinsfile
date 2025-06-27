@@ -14,6 +14,7 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
+    
     stages {
         stage('Checkout') {
             when {
