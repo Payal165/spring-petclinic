@@ -2,7 +2,7 @@ pipeline {
     agent any 
     environment {
         SONARQUBE_SERVER = 'My_SonarQube'
-        MAVEN_HOME = tool 'maven 3.8.7'
+        MAVEN_HOME = tool 'maven'
         NEXUS_REPO = 'maven-releases'
         NEXUS_URL = 'http://35.154.149.169:30900'              // Maven/Nexus UI
         NEXUS_DOCKER_REPO = 'docker-hosted'                    // Docker repo name
