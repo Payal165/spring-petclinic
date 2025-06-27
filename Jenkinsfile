@@ -42,7 +42,7 @@ pipeline {
                     sh """
                         cp target/spring-petclinic-3.5.0-SNAPSHOT.jar target/petclinic-${BUILD_VERSION}.jar
                     """
-                }
+                } 
             }
         }
         //stage('Manual Approval') {
