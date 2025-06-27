@@ -10,7 +10,6 @@ pipeline {
         NEXUS_DOCKER_REGISTRY = '13.201.55.135:30002'         // Updated Docker registry port
         NEXUS_CREDENTIALS_ID = 'nexus_cred'
     }
-
     options {
         skipStagesAfterUnstable()
     }
