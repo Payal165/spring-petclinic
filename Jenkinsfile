@@ -5,9 +5,9 @@ pipeline {
         SONARQUBE_SERVER = 'My_SonarQube'
         MAVEN_HOME = tool 'maven 3.8.7'
         NEXUS_REPO = 'maven-releases'
-        NEXUS_URL = 'http://13.201.55.135:30900'              // Maven/Nexus UI
+        NEXUS_URL = 'http://35.154.149.169:30900'              // Maven/Nexus UI
         NEXUS_DOCKER_REPO = 'docker-hosted'                  // Docker repo name
-        NEXUS_DOCKER_REGISTRY = '13.201.55.135:30002'         // Updated Docker registry port
+        NEXUS_DOCKER_REGISTRY = '35.154.149.169:30002'         // Updated Docker registry port
         NEXUS_CREDENTIALS_ID = 'nexus_cred'
     }
     options {
