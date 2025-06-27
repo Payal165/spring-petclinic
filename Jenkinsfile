@@ -35,7 +35,6 @@ pipeline {
                 sh "${MAVEN_HOME}/bin/mvn -B clean package -DskipTests -Dcheckstyle.skip=true"
             }
         }
-
         stage('Version Build') {
             steps {
                 script {
