@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent any 
 
     environment {
         SONARQUBE_SERVER = 'My_SonarQube'
@@ -22,6 +22,7 @@ pipeline {
                 git url: 'https://github.com/Payal165/spring-petclinic.git', branch: 'main'
             }
         }
+        
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv("${SONARQUBE_SERVER}") {
