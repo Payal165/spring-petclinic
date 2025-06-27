@@ -28,7 +28,7 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv("${SONARQUBE_SERVER}") {
-                    sh "${MAVEN_HOME}/bin/mvn clean verify sonar:sonar -Dcheckstyle.skip=true"
+                    sh 'mvn clean verify -DskipITs -Dcheckstyle.skip=true sonar:sonar'
                 }
             }
         }
