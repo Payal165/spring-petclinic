@@ -22,7 +22,6 @@ pipeline {
                 git url: 'https://github.com/Payal165/spring-petclinic.git', branch: 'main'
             }
         }
-
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv("${SONARQUBE_SERVER}") {
