@@ -85,7 +85,6 @@ pipeline {
                             cp petclinic-${BUILD_VERSION}.jar petclinic.jar
                         """
                     }
-
                     // Build Docker image using correct registry address
                     sh """
                         docker build -t ${NEXUS_DOCKER_REGISTRY}/${imageName}:${BUILD_VERSION} .
