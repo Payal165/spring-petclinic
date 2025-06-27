@@ -1,6 +1,5 @@
 pipeline {
     agent any 
-
     environment {
         SONARQUBE_SERVER = 'My_SonarQube'
         MAVEN_HOME = tool 'maven 3.8.7'
