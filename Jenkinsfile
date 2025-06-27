@@ -9,7 +9,7 @@ pipeline {
         NEXUS_CREDENTIALS_ID = 'nexus_cred'
     }
     tools {
-        maven 'maven'  // Match your Jenkins Maven tool name here
+        maven 'maven'  // Match your Jenkins Maven tool name here 
     }
     options {
         skipStagesAfterUnstable()
