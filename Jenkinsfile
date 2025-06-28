@@ -3,9 +3,9 @@ pipeline {
     environment {
         SONARQUBE_SERVER = 'My_SonarQube'
         NEXUS_REPO = 'maven-releases'
-        NEXUS_URL = 'http://35.154.149.169:30900'              // Maven/Nexus UI
+        NEXUS_URL = 'http://65.2.137.238:30900'              // Maven/Nexus UI
         NEXUS_DOCKER_REPO = 'docker-hosted'                    // Docker repo name
-        NEXUS_DOCKER_REGISTRY = '35.154.149.169:30002'         // Updated Docker registry port
+        NEXUS_DOCKER_REGISTRY = '65.2.137.238:30002'         // Updated Docker registry port
         NEXUS_CREDENTIALS_ID = 'nexus_cred'
     }
     tools {
@@ -28,7 +28,11 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv("${SONARQUBE_SERVER}") {
-                    sh 'mvn clean verify -DskipITs -Dcheckstyle.skip=true sonar:sonar'
+                    sh "mvn clean verify sonar:sonar \
+                    -Dsonar.projectKey=sonarqube \
+                    -Dsonar.projectName='sonarqube' \
+                    -Dsonar.host.url=http://65.2.137.238:30900 \
+                    -Dsonar.token=sqp_27925373dbe7f0cfcb8a2b2a52b878fb5c53fa9d"
                 }
             }
         }
