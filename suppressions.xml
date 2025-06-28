@@ -1,4 +1,1 @@
 <suppress files=".*Jenkinsfile" checks="NoHttp"/>
-<configuration>
-  <suppressionsLocation>suppressions.xml</suppressionsLocation>
-</configuration>
